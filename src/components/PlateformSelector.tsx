@@ -4,11 +4,12 @@ import { Platform } from "../hooks/useGames";
 import usePlatforms from "../hooks/usePlatforms";
 
 interface Props {
-  onSelectePlatform: (platform: Platform | null) => void;
+  onSelectePlatform: (platform: Platform) => void;
   selectedPlatform: Platform | null;
 }
 const PlateformSelector = ({ onSelectePlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
+
   if (error) return null;
   return (
     <Menu>
@@ -16,7 +17,7 @@ const PlateformSelector = ({ onSelectePlatform, selectedPlatform }: Props) => {
         {selectedPlatform?.name || "Platforms"}
       </MenuButton>
       <MenuList>
-        {data.map((platform) => (
+        {data?.results.map((platform) => (
           <MenuItem
             onClick={() => onSelectePlatform(platform)}
             key={platform.id}
