@@ -14,6 +14,7 @@ const axiosInstance = axios.create({
 class APIClient<T> {
   endpoint: string;
   constructor(endpoint: string) {
+    console.log(endpoint);
     this.endpoint = endpoint;
   }
   getAll = (config: AxiosRequestConfig) => {
